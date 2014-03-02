@@ -1,8 +1,32 @@
 <html>
 <head>
 	<title>KineticEngine: An HTML5 game engine</title>
+
+	<style type="text/css">
+		
+	</style>
 </head>
 <body>
-	Hi
+	<div id="content">
+		<h1 id="title">
+			Minifizer <small>A java script and css minifier/bundler</small>
+		</h1>
+		<p id="forkme">
+			<strong>Fork me on Github!</strong> <a href="http://github.com/calhoun137/minifizer">http://github.com/calhoun137/minifizer</a>
+		</p>
+		<p> 
+			Enter a url below, and minifizer will bundle and minify all the java script or css into a single file.
+		</p>
+		<div id="parameters">
+				url:	<input id="url" type="text" />
+				
+				File Type: <select id="file-type">
+					<option value="js">js</option>
+					<option value="css">css</option>
+				</select>
+				<input id="submit" type="submit" value="Minifize" />
+		</div>
+		<textarea row="1" col="1" id="code-area"></textarea>
+	</div>
 </body>
 </html>
