@@ -1,0 +1,12 @@
+#game-stage, #pawns, .background {
+	position: absolute;
+	top:0;
+	left:0;
+}
+
+#game-stage {
+	overflow: hidden; 
+	width: 100%;
+	height: 100%;
+}
+
