@@ -1,5 +1,5 @@
 // ---------------------------------------------------- //
-//          Kinetic: Java Script Game Engine            //
+//         Kinetic: A Java Script Game Engine           //
 // ---------------------------------------------------- //
 
 KE = new function KineticEngine() {
