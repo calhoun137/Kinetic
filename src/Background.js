@@ -1,6 +1,13 @@
 KE.Background = function Background(params) {
 
-	this.el = Utils.createElement({
+	var img = KE.ImageManager.get(params.img),
+		x = params.x || 0,
+		y = params.y || 0,
+		width = params.width || img.width,
+		height = params.height || img.height,
+		_this = this;
+
+	this.el = KE.createElement({
 		id: 'background_' + ( params.z || -1 ),
 		className: 'background',
 		style:{
@@ -8,42 +15,36 @@ KE.Background = function Background(params) {
 			left: (params.left || 0) + 'px',
 			top: (params.top || 0) + 'px'
 		},
-		width: params.width,
-		height: params.height
+		width: width,
+		height: height
 	});
 
-	var img = new Image,
-		ctx = this.el.getContext('2d'),
-		x = params.x || 0,
-		y = params.y || 0,
-		height = width = 0,
-		_this = this;
+	var ctx = this.el.getContext('2d'),
+		pattern = ctx.createPattern(img, 'repeat');
 
-	img.src = params.img;
+	ctx.fillStyle = pattern;
 
-	img.onload = function() {
-		var pattern = ctx.createPattern(img, 'repeat');
-		width = img.width;
-		height = img.height;
-		ctx.fillStyle = pattern;
-		ctx.fillRect(0, 0, width, height);
-	
-		if( params.velocity ) {
-			KE.updateHandlers[_this.el.id] = function() {
-				_this.translate(params.velocity);
-			}
-		}
+	if( params.scale ) {
+		ctx.scale( params.scale.x || 1, params.scale.y || 1);
 	}
+
+	ctx.fillRect(0, 0, width, height);
 
 	this.translate = function(vector) {
 
 		x = ( x + (vector.x || 0) ) % width;
 		y = ( y + (vector.y || 0) ) % height;
 
-		ctx.clearRect(0, 0, this.el.offsetWidth, this.el.offsetHeight);
+		ctx.clearRect(0, 0, width, height);
 		ctx.translate(-x,-y);
 		ctx.fillRect(0, 0, width + x, height + y)
 		ctx.translate(x,y);
+	}
+
+	if( params.velocity ) {
+		KE.updateHandlers[this.el.id] = function() {
+			_this.translate(params.velocity);
+		}
 	}
 
 

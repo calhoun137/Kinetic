@@ -2,6 +2,84 @@
 <head>
 	<title>KineticEngine: An HTML5 game engine</title>
 	<link rel="stylesheet" href="style.css" />
+
+	<style type="text/css">
+		#content {
+			max-width: 1170px;
+			margin: 0 auto;
+		}
+
+		#title {
+			font-family: Helvetica;
+			font-size: 40px;
+			font-weight: bold;
+			border-bottom: 1px solid #e5e5e5
+		}
+
+		#title small {
+			font-weight: normal;
+			font-size: 25px;
+			color: rgb(153, 153, 153);
+		}
+
+		#forkme {
+			padding: 8px 35px 8px 14px;
+			margin-bottom: 20px;
+			text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+			border: 1px solid #fbeed5;
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			border-radius: 4px;
+			color: #3a87ad;
+			background-color: #d9edf7;
+			border-color: #bce8f1;
+			font-family: Helvetica;
+		}
+
+		#forkme a {
+			color: #0088cc;
+			text-decoration: none;
+			font-size: 14px;
+		}
+
+		#forkme a:hover {
+			color: #005580;
+			text-decoration: underline;
+		}
+
+		#parameters {
+			border: 1px solid black;
+			margin-bottom: 20px;
+		}
+
+		#code-area {
+			margin: 0 auto;
+			width: 100%;
+			height: 400px;
+			border: 1px solid black;
+			background-color: #e5e5e5;
+		}
+
+		#tmp-bg {
+			position: fixed;
+			height: 100%;
+			width: 100%;
+			opacity: 0.5;
+			background-color: #000000;
+		}
+
+		#loader {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+		}
+
+		#readme {
+			width: 100%;
+			border: 0;
+		}
+	</style>
+
 </head>	
 <body>
 	<div id="content">
@@ -9,13 +87,47 @@
 			Kinetic <small>A Java Script Game Engine</small>
 		</h1>
 		<p id="forkme">
-			<strong>Fork me on Github!</strong> <a href="http://github.com/calhoun137/KineticEngine">http://github.com/calhoun137/KineticEngine</a>
+			<strong>Fork me on Github!</strong> <a href="http://github.com/calhoun137/Kinetic">http://github.com/calhoun137/Kinetic</a>
 		</p>
 
-		<h2> Examples </h2>
+		<h1> Examples </h1>
+
 		<a href="examples/blocks"><img class="demo-portrait" src="img/collision-demo.png"/></a>
-		<a href="examples/shooter"><img class="demo-portrait" src="img/shooter-demo.png"/></a>
+		<a id="shooter-example" href="examples/shooter"><img class="demo-portrait" src="img/shooter-demo.png"/></a>
 
 	</div>
+
+	<script type="text/javascript">
+		document.addEventListener("keydown", function(e) {
+		  if (e.keyCode == 13) {
+		    toggleFullScreen();
+		  }
+		}, false);
+
+		function toggleFullScreen() {
+		  if (!document.fullscreenElement &&    // alternative standard method
+		      !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {  // current working methods
+		    if (document.documentElement.requestFullscreen) {
+		      document.documentElement.requestFullscreen();
+		    } else if (document.documentElement.msRequestFullscreen) {
+		      document.documentElement.msRequestFullscreen();
+		    } else if (document.documentElement.mozRequestFullScreen) {
+		      document.documentElement.mozRequestFullScreen();
+		    } else if (document.documentElement.webkitRequestFullscreen) {
+		      document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+		    }
+		  } else {
+		    if (document.exitFullscreen) {
+		      document.exitFullscreen();
+		    } else if (document.msExitFullscreen) {
+		      document.msExitFullscreen();
+		    } else if (document.mozCancelFullScreen) {
+		      document.mozCancelFullScreen();
+		    } else if (document.webkitExitFullscreen) {
+		      document.webkitExitFullscreen();
+		    }
+		  }
+		}
+	</script>
 </body>
 </html>
