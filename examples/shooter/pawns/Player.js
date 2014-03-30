@@ -1,4 +1,4 @@
-var shotSound = Utils.createElement({
+var shotSound = KE.createElement({
 	src: 'mfx/laser_shooting.wav'
 }, 'audio');
 
@@ -6,15 +6,13 @@ shotSound.volume = 0.3;
 
 Player = function(params) {
 
-	var impulse = 3,
+	var impulse = 5,
 		cooldown = 25,
 		cooldownTimer = 0;
 
 	this.__proto__ = new KE.Pawn({
 		img: 'gfx/player.png',
 		position: { x: 15, y: 14 },
-		width: 300 / (4 * PPM),
-		height: 174 /( 4 * PPM),
 		resititution: 0.8,
 		density: 1,
 		friction: 0.5,
@@ -36,7 +34,7 @@ Player = function(params) {
 
 	this.shoot = function() {
 		this.animate({
-			interval: 2,
+			interval: 100,
 			startFrame: 4,
 			endFrame: 7,
 			runOnce: true
@@ -70,6 +68,7 @@ Player = function(params) {
 					break;
 
 				case '37':
+					console.log('aaa')
 					this.body.ApplyImpulse({x:-impulse,y:0}, position)
 					break;
 			
@@ -88,12 +87,16 @@ Player = function(params) {
 			}
 		}
 
-		if( collision = this.body.GetContactList() ) {
-			if( collision.other.m_userData.type === 'enemy' ) {
-				KE.pawns[collision.other.m_userData.id].die();
-				this.die();
-			}
-		}	
+		if( position.x < 1.25 ) this.body.m_linearVelocity.x = 1;
+		if( position.x > KE.stage.offsetWidth / PPM - 1.25 ) this.body.m_linearVelocity.x = -1;
+		if( position.y < 0.7 ) this.body.m_linearVelocity.y = 1;
+		if( position.y > KE.stage.offsetHeight / PPM - 0.7 ) this.body.m_linearVelocity.y = -1;
+
+		if( enemy = this.getCollision('enemy') ) {
+			enemy.die();
+			this.die();
+		}				
+			
 	}
 
 }

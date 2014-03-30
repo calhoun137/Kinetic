@@ -1,8 +1,13 @@
-var sound = Utils.createElement({
+var sound = KE.createElement({
 	src: 'mfx/boom.ogg'
 }, 'audio');
 
 sound.volume = 0.7;
+
+var explosionCanvas = KE.createElement({	
+	id: 'explosions',
+	className: 'pawns'
+});
 
 Explosion = function(position) {
 
@@ -10,12 +15,13 @@ Explosion = function(position) {
 	
 		img: 'gfx/explosion.png',
 		animationData: {
-			interval: 1,
+			interval: 15,
 			framesX: 5,
 			framesY: 5,
 			endFrame: 23,
 			runOnce: true
 		},
+		canvasId: 'explosions',
 		position: {
 			x: position.x - 1,
 			y: position.y - 1

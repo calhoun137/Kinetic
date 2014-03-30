@@ -3,7 +3,7 @@ KE.debug = function(flags) {
 	var flags = flags || {},
 		b2DebugDraw = Box2D.Dynamics.b2DebugDraw,
 		debugDraw = new b2DebugDraw,
-		debugCanvas = Utils.createElement({
+		debugCanvas = KE.createElement({
 			id: 'debug-canvas',
 			width: KE.stage.offsetWidth,
 			height: KE.stage.offsetHeight
