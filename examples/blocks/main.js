@@ -6,12 +6,13 @@
 	]);
 
 	KE.init(function() {
-		var NUM_BLOCKS = 10,
-			WALL_WIDTH = 60,
-			WALL_HEIGHT = 30,
+
+		var NUM_BLOCKS = 300,
+			WALL_WIDTH = KE.stage.offsetWidth / PPM,
+			WALL_HEIGHT = KE.stage.offsetHeight / PPM,
 			WALL_SIZE = 1;
 
-		new Wall({ x: WALL_WIDTH / 2, y: WALL_SIZE / 2, width: WALL_WIDTH, height: WALL_SIZE});
+		new Wall({ x: WALL_WIDTH / 2 , y: WALL_SIZE / 2, width: WALL_WIDTH, height: WALL_SIZE});
 		new Wall({ x: WALL_SIZE / 2, y: WALL_HEIGHT / 2 , width: WALL_SIZE, height: WALL_HEIGHT});
 		new Wall({ x: WALL_WIDTH / 2, y: WALL_HEIGHT - WALL_SIZE / 2, width: WALL_WIDTH, height: WALL_SIZE});
 		new Wall({ x: WALL_WIDTH - WALL_SIZE / 2, y: WALL_HEIGHT / 2, width: WALL_SIZE, height: WALL_HEIGHT});

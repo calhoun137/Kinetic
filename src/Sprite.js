@@ -9,8 +9,9 @@ KE.Sprite = function Sprite(params) {
 		_this = this;
 
 	this.img = KE.ImageManager.get(params.img);
-	this.width = this.img.width;
-	this.height = this.img.height;
+
+	this.width = params.width * PPM || this.img.width;
+	this.height = params.height * PPM || this.img.height;
 	this.aX = this.aY = 0;
 
 	if( params.repeatImage === true ) {
