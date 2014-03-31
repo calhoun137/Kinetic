@@ -2,6 +2,8 @@
 //         Kinetic: A Java Script Game Engine           //
 // ---------------------------------------------------- //
 
+window.PPM = 30;
+
 KE = new function KineticEngine() {
 
 	var timer = 0,
